@@ -3,8 +3,9 @@ package com.amilo.authservice;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 
-@ComponentScan({"com.amilo.*", "com.common.*"})
+@EnableAuthorizationServer
 @SpringBootApplication
 public class AuthServiceApplication {
 

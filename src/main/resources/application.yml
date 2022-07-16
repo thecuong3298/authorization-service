@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mariadb://192.168.1.121:3306/auth
+    url: jdbc:mariadb://192.168.1.122:3306/auth
     username: root
     password: 123456
     driver-class-name: org.mariadb.jdbc.Driver
@@ -9,3 +9,4 @@ spring:
       default-client: client1
       default-secret: secret
       iss: common-issuer
+      token-validity-seconds: 60
