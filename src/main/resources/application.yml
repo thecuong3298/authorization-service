@@ -10,3 +10,4 @@ spring:
       default-secret: secret
       iss: common-issuer
       token-validity-seconds: 60
+      reuse-refresh-token: true
