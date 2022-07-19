@@ -1,0 +1,15 @@
+server:
+  port: 8080
+spring:
+  datasource:
+    url: jdbc:mariadb://115.146.122.211:3306/authentication
+    username: el-course
+    password: 123456aA
+    driver-class-name: org.mariadb.jdbc.Driver
+  security:
+    oauth2:
+      default-client: client1
+      default-secret: secret
+      iss: common-issuer
+      token-validity-seconds: 180
+      reuse-refresh-token: true
