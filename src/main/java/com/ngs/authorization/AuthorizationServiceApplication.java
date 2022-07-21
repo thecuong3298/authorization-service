@@ -8,8 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication
 public class AuthorizationServiceApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(AuthorizationServiceApplication.class, args);
-    }
-
+  public static void main(String[] args) {
+    SpringApplication.run(AuthorizationServiceApplication.class, args);
+  }
 }

@@ -6,10 +6,10 @@ import org.springframework.security.core.AuthenticationException;
 
 public class CustomAuthenticationProvider extends DaoAuthenticationProvider {
 
-    @Override
-    public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-        Authentication newAuthentication = super.authenticate(authentication);
-//        if(authentication.getDetails())
-        return newAuthentication;
-    }
+  @Override
+  public Authentication authenticate(Authentication authentication) throws AuthenticationException {
+    Authentication newAuthentication = super.authenticate(authentication);
+    //        if(authentication.getDetails())
+    return newAuthentication;
+  }
 }

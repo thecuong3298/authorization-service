@@ -19,18 +19,16 @@ import javax.persistence.Table;
 @Table(name = "authority")
 public class Authority implements GrantedAuthority {
 
-    @Id
-    @Column(name = "id")
-    private Long id;
+  @Id
+  @Column(name = "id")
+  private Long id;
 
-    @Column(name = "user_id")
-    private Long userId;
+  @Column(name = "user_id")
+  private Long userId;
 
-    @Column(name = "authority")
-    private String authority;
+  @Column(name = "authority")
+  private String authority;
 
-    @Column(name = "description")
-    private String description;
-
-
+  @Column(name = "description")
+  private String description;
 }

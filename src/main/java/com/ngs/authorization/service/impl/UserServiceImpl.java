@@ -12,10 +12,13 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
-    private final UserRepository userRepository;
+  private final UserRepository userRepository;
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return new UserPrincipal(userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException(username)));
-    }
+  @Override
+  public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    return new UserPrincipal(
+        userRepository
+            .findByUsername(username)
+            .orElseThrow(() -> new UsernameNotFoundException(username)));
+  }
 }

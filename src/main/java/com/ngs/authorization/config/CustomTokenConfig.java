@@ -18,40 +18,37 @@ import java.util.Map;
 @Configuration
 @RequiredArgsConstructor
 public class CustomTokenConfig {
-    private final
+  private final AuthProperties authProperties;
 
-    AuthProperties authProperties;
+  private final UserDetailsService userDetailsService;
 
-    private final UserDetailsService userDetailsService;
+  private final PasswordEncoder passwordEncoder;
 
-    private final PasswordEncoder passwordEncoder;
+  //    private final RedisConnectionFactory redisConnectionFactory;
 
-//    private final RedisConnectionFactory redisConnectionFactory;
+  //    @Bean
+  //    @Primary
+  //    public TokenStore customTokenStore() {
+  //        return new RedisTokenStore(redisConnectionFactory);
+  //    }
+  @Bean
+  @Primary
+  public DaoAuthenticationProvider customDaoAuthenticationProvider() {
+    CustomAuthenticationProvider authenticationProvider = new CustomAuthenticationProvider();
+    authenticationProvider.setUserDetailsService(this.userDetailsService);
+    authenticationProvider.setPasswordEncoder(this.passwordEncoder);
+    return authenticationProvider;
+  }
 
-    //    @Bean
-//    @Primary
-//    public TokenStore customTokenStore() {
-//        return new RedisTokenStore(redisConnectionFactory);
-//    }
-    @Bean
-    @Primary
-    public DaoAuthenticationProvider customDaoAuthenticationProvider() {
-        CustomAuthenticationProvider authenticationProvider = new CustomAuthenticationProvider();
-        authenticationProvider.setUserDetailsService(this.userDetailsService);
-        authenticationProvider.setPasswordEncoder(this.passwordEncoder);
-        return authenticationProvider;
-    }
-
-    @Bean
-    @Primary
-    public TokenEnhancer customTokenEnhancer() {
-        return (oAuth2AccessToken, oAuth2Authentication) -> {
-            DefaultOAuth2AccessToken accessToken = new DefaultOAuth2AccessToken(oAuth2AccessToken);
-            Map<String, Object> map = new HashMap<>();
-            map.put("refresh_expires_in", authProperties.getRefreshTokenValiditySeconds());
-            accessToken.setAdditionalInformation(map);
-            return accessToken;
-        };
-    }
-
+  @Bean
+  @Primary
+  public TokenEnhancer customTokenEnhancer() {
+    return (oAuth2AccessToken, oAuth2Authentication) -> {
+      DefaultOAuth2AccessToken accessToken = new DefaultOAuth2AccessToken(oAuth2AccessToken);
+      Map<String, Object> map = new HashMap<>();
+      map.put("refresh_expires_in", authProperties.getRefreshTokenValiditySeconds());
+      accessToken.setAdditionalInformation(map);
+      return accessToken;
+    };
+  }
 }
